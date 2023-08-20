@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import * as Icon from "react-native-feather";
@@ -15,6 +15,7 @@ export default function RestaurantScreen() {
   return (
     <SafeAreaView>
       <CartIcon />
+      <StatusBar style="light" />
       <ScrollView>
         <View className="relative">
           <Image
