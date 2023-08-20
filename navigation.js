@@ -5,6 +5,7 @@ import {View, Text} from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
 import CartScreen from './screens/CartScreen';
+import OrderPreparingScreen from './screens/OrderPreparingScreen';
 
 export default function Navigation() {
   return (
