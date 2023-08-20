@@ -18,7 +18,7 @@ export default function Navigation() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Restaurant" component={RestaurantScreen} />
         <Stack.Screen name="Cart" component={CartScreen} />
-        <Stack.Screen name="OrderPreparing" component={OrderPreparingScreen} />
+        <Stack.Screen name="OrderPreparing" component={OrderPreparingScreen} options={{ presentation: 'fullScreenModal'}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
