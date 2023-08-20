@@ -23,20 +23,18 @@ export default function FeaturedRow({ title, description, restaurants }) {
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
-            paddingHorizontal: 15
+          paddingHorizontal: 15,
         }}
         className="py-5 overflow-visible"
       >
-        {
-            restaurants.map((restaurant, index) => {
-                return(
-                    <RestaurantCard
-                        item={restaurant}
-                        key={index}
-                    />
-                )
-            })
-        }
+        {restaurants.map((restaurant, index) => {
+          return (
+            <RestaurantCard
+              item={restaurant}
+              key={index}
+            />
+          );
+        })}
       </ScrollView>
     </View>
   );

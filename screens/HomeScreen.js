@@ -10,10 +10,10 @@ import FeaturedRow from "../components/FeaturedRow";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView className="bg-white mt-1">
+    <SafeAreaView className="mt-1 bg-white">
       <StatusBar barStyle="dark-content" />
-      <View className="flex-row items-center space-x-2 px-4 pb-2">
-        <View className="flex-row flex-1 items-center p-3 rounded-full border border-gray-300">
+      <View className="flex-row items-center px-4 pb-2 space-x-2">
+        <View className="flex-row items-center flex-1 p-3 border border-gray-300 rounded-full">
           <Icon.Search
             height={25}
             width={25}
@@ -23,7 +23,7 @@ export default function HomeScreen() {
             className="flex-1 ml-2 text-gray-500"
             placeholder="Find your Snack"
           />
-          <View className="flex-row items-center space-x-1 border-0 border-l-2 pl-2 border-l-gray-300">
+          <View className="flex-row items-center pl-2 space-x-1 border-0 border-l-2 border-l-gray-300">
             <Icon.MapPin
               height={20}
               width={20}
@@ -52,18 +52,16 @@ export default function HomeScreen() {
       >
         <Categories />
         <View className="mt-5">
-          {
-            [featured, featured, featured].map((item, index)=> {
-              return(
-                <FeaturedRow 
-                  key={index}
-                  title={item.title}
-                  restaurants={item.restaurants}
-                  description={item.description}
-                />
-              )
-            })
-          }
+          {[featured, featured, featured].map((item, index) => {
+            return (
+              <FeaturedRow
+                key={index}
+                title={item.title}
+                restaurants={item.restaurants}
+                description={item.description}
+              />
+            );
+          })}
         </View>
       </ScrollView>
     </SafeAreaView>

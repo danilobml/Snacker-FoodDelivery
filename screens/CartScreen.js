@@ -48,13 +48,13 @@ export default function CartScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 50 }}
-        className="bg-white pt-5"
+        className="pt-5 bg-white"
       >
         {restaurant.dishes.map((dish, index) => {
           return (
             <View
               key={index}
-              className="flex-row items-center px-4 py-2 space-x-3 bg-white rounded-3xl mx-2 mb-3 shadow-md"
+              className="flex-row items-center px-4 py-2 mx-2 mb-3 space-x-3 bg-white shadow-md rounded-3xl"
             >
               <Text
                 className="font-bold"
@@ -69,7 +69,7 @@ export default function CartScreen() {
               <Text className="flex-1 font-bold text-gray-700">
                 {dish.name}
               </Text>
-              <Text className="font-semibold text-base">${dish.price}</Text>
+              <Text className="text-base font-semibold">${dish.price}</Text>
               <TouchableOpacity onPress={() => {}}>
                 <Icon.Trash2
                   className="w-6 h-6"
@@ -82,7 +82,7 @@ export default function CartScreen() {
       </ScrollView>
       <View
         style={{ backgroundColor: themeColors.bgColor(0.2) }}
-        className="p-6 px-8 rounded-t-3xl space-y-4"
+        className="p-6 px-8 space-y-4 rounded-t-3xl"
       >
         <View className="flex-row justify-between">
           <Text className="font-bold text-gray-700">Subtotal:</Text>
@@ -98,7 +98,7 @@ export default function CartScreen() {
         </View>
         <View>
           <TouchableOpacity
-            className="flex-row justify-center items-center py-3 rounded-3xl"
+            className="flex-row items-center justify-center py-3 rounded-3xl"
             style={{ backgroundColor: themeColors.bgColor(1) }}
             onPress={() => navigation.navigate("OrderPreparing")}
           >
