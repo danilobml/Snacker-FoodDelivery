@@ -9,15 +9,25 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import * as Icon from "react-native-feather";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import { themeColors } from "../themes";
 import DishRow from "../components/DishRow";
 import CartIcon from "../components/CartIcon";
+import { setRestaurant } from "../slices/restaurantSlice";
 
 export default function RestaurantScreen() {
   const { params } = useRoute();
   let item = params;
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(item && item.id) {
+      dispatch(setRestaurant({...item}))      
+    }
+  }, [])
 
   return (
     <SafeAreaView>
@@ -64,7 +74,6 @@ export default function RestaurantScreen() {
                 </Text>
               </View>
             </View>
-
             <View>
               <View className="flex-row space-x-1 item-center">
                 <Icon.MapPin
@@ -79,7 +88,6 @@ export default function RestaurantScreen() {
               <Text className="mt-2 text-gray-700">{item.description}</Text>
             </View>
           </View>
-
           <View className="bg-white pb-36">
             <Text className="px-4 py-4 text-2xl font-bold">Menu:</Text>
             {item.dishes.map((dish, index) => {
