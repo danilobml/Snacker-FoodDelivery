@@ -1,9 +1,13 @@
 import { View, ScrollView, TouchableOpacity, Image, Text } from "react-native";
 import { useState } from "react";
-import { categories } from "../dummyData";
+
+import { useFetchData } from "../hooks/useFetchData";
 
 export default function Categories() {
   const [activeCategory, setActiveCategory] = useState(null);
+  
+  const { categories } = useFetchData();
+  
   return (
     <View className="mt-4">
       <ScrollView
@@ -14,7 +18,7 @@ export default function Categories() {
           paddingHorizontal: 15,
         }}
       >
-        {categories.map((category, index) => {
+        {categories.length > 0 && categories.map((category, index) => {
           let isActive = category.id === activeCategory;
           let btnClass = isActive ? "bg-gray-600" : "bg-gray-200";
           let textClass = isActive
@@ -30,8 +34,8 @@ export default function Categories() {
                 onPress={() => setActiveCategory(category.id)}
               >
                 <Image
-                  style={{ width: 45, height: 45 }}
-                  source={category.image}
+                  style={{ width: 45, height: 45, borderRadius: 45 }}
+                  source={{ uri: category.image }}
                 />
               </TouchableOpacity>
               <Text className={`text-sm ${textClass}`}>{category.name}</Text>

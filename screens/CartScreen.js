@@ -15,7 +15,6 @@ export default function CartScreen() {
   const cartTotal = useSelector(selectCartTotal);
   const dispatch = useDispatch();
   const [groupedItems, setGroupedItems] = useState({});
-  const deliveryFee = 2;
 
   useEffect(() => {
     const items = cartItems.reduce((group, item) => {
@@ -84,13 +83,13 @@ export default function CartScreen() {
                 {items.length} x
               </Text>
               <Image
-                source={dish.image}
+                source={{uri: dish.image}}
                 className="w-20 h-20 rounded-full"
               />
               <Text className="flex-1 font-bold text-gray-700">
                 {dish.name}
               </Text>
-              <Text className="text-base font-semibold">${dish.price}</Text>
+              <Text className="text-base font-semibold">${Number(dish.price)}</Text>
               <TouchableOpacity className="rounded-full" onPress={() => dispatch(removeFromCart({id: dish.id}))} style={{backgroundColor: themeColors.bgColor(1) }}>
                 <Icon.Minus
                   className="w-6 h-6"
@@ -111,11 +110,11 @@ export default function CartScreen() {
         </View>
         <View className="flex-row justify-between">
           <Text className="font-bold text-gray-700">Delivery fee:</Text>
-          <Text className="font-bold text-gray-700">${cartItems.length > 0 ? deliveryFee: 0}</Text>
+          <Text className="font-bold text-gray-700">${cartItems.length > 0 ? restaurant.deliveryFee: 0}</Text>
         </View>
         <View className="flex-row justify-between">
           <Text className="font-bold text-gray-700">Order total:</Text>
-          <Text className="font-bold text-gray-700">${cartItems.length > 0 ? cartTotal + deliveryFee : 0}</Text>
+          <Text className="font-bold text-gray-700">${cartItems.length > 0 ? cartTotal + restaurant.deliveryFee : 0}</Text>
         </View>
         <View>
           <TouchableOpacity

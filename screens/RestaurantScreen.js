@@ -16,12 +16,16 @@ import { themeColors } from "../themes";
 import DishRow from "../components/DishRow";
 import CartIcon from "../components/CartIcon";
 import { setRestaurant } from "../slices/restaurantSlice";
+import { useFetchData } from "../hooks/useFetchData";
+
 
 export default function RestaurantScreen() {
   const { params } = useRoute();
   let item = params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
+
+  const { dishes } = useFetchData();
 
   useEffect(() => {
     if(item && item.id) {
@@ -37,7 +41,7 @@ export default function RestaurantScreen() {
         <View className="relative">
           <Image
             className="w-full h-72"
-            source={item.image}
+            source={{uri: item.image}}
           />
           <TouchableOpacity
             className="absolute rounded-full shadow top-14 left-4 bg-gray-50"
@@ -91,10 +95,11 @@ export default function RestaurantScreen() {
           <View className="bg-white pb-36">
             <Text className="px-4 py-4 text-2xl font-bold">Menu:</Text>
             {item.dishes.map((dish, index) => {
+              const dishItem = dishes.find((d) => d.id === dish);
               return (
                 <View key={index}>
                   <DishRow
-                    item={{ ...dish }}
+                    item={{...dishItem}}
                     key={index}
                   />
                 </View>

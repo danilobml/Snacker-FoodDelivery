@@ -5,10 +5,13 @@ import * as Icon from "react-native-feather";
 
 import { themeColors } from "../themes";
 import Categories from "../components/Categories";
-import { featured } from "../dummyData";
 import FeaturedRow from "../components/FeaturedRow";
 
+import { useFetchData } from "../hooks/useFetchData";
+
 export default function HomeScreen() {
+  const { restaurants, featured } = useFetchData();
+
   return (
     <SafeAreaView className="mt-1 bg-white">
       <StatusBar barStyle="dark-content" />
@@ -52,16 +55,19 @@ export default function HomeScreen() {
       >
         <Categories />
         <View className="mt-5">
-          {[featured, featured, featured].map((item, index) => {
-            return (
-              <FeaturedRow
-                key={index}
-                title={item.title}
-                restaurants={item.restaurants}
-                description={item.description}
-              />
-            );
-          })}
+          {(restaurants.length > 0 && featured.length > 0) &&
+            featured.map((item, index) => {
+              const restaurantsInRow = restaurants.filter(restaurant =>
+                item.restaurants.includes(restaurant.categoryId));
+              return (
+                <FeaturedRow
+                  key={`featured-row-${index}`}
+                  title={item.title}
+                  restaurants={restaurantsInRow}
+                  description={item.description}
+                />
+              );
+            })}
         </View>
       </ScrollView>
     </SafeAreaView>

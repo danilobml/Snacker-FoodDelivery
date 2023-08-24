@@ -3,7 +3,7 @@ import * as Icon from "react-native-feather";
 import { themeColors } from "../themes";
 import { useNavigation } from "@react-navigation/native";
 
-export default function RestaurantCard({ item }) {
+export default function RestaurantCard({ item, category }) {
   const navigation = useNavigation();
   return (
     <TouchableWithoutFeedback
@@ -18,7 +18,7 @@ export default function RestaurantCard({ item }) {
       >
         <Image
           className="w-64 h-36 rounded-t-3xl"
-          source={item.image}
+          source={{uri: item.image}}
         />
         <View className="px-3 pb-4 space-y-2">
           <Text className="pt-2 text-lg font-bold">{item.name}</Text>
@@ -27,7 +27,7 @@ export default function RestaurantCard({ item }) {
               source={require("../assets/images/fullStar.png")}
               className="w-4 h-4"
             />
-            <Text className="text-green-700">{item.stars}</Text>
+            <Text className="text-green-700">{item.rating}</Text>
             <Text className="text-gray-700">
               ({item.reviews} reviews) .{" "}
               <Text className="font-semibold">{item.category}</Text>

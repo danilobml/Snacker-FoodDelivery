@@ -17,8 +17,8 @@ export default function DeliveryScreen() {
     <View className="flex-1">
       <MapView
         initialRegion={{
-          latitude: restaurant.lat,
-          longitude: restaurant.lng,
+          latitude: Number(restaurant.lat),
+          longitude: Number(restaurant.lng),
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
