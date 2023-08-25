@@ -23,7 +23,7 @@ export default function HomeScreen() {
       <StatusBar barStyle="dark-content" />
       <View className="flex-row items-center px-4 pb-2 space-x-2">
         <View className="rounded-full shadow-md">
-          <Image source={require('../assets/images/logo.png')} style={{ width: 45, height: 45, borderRadius: '45%'}}/>
+          <Image source={require('../assets/images/logo.png')} style={{ width: 45, height: 45}} borderRadius={50}/>
         </View>      
         <View className="flex-row items-center flex-1 p-3 border border-gray-300 rounded-full">
           <Icon.Search
