@@ -114,13 +114,14 @@ export default function CartScreen() {
         </View>
         <View className="flex-row justify-between">
           <Text className="font-bold text-gray-700">Order total:</Text>
-          <Text className="font-bold text-gray-700">${cartItems.length > 0 ? cartTotal + restaurant.deliveryFee : 0}</Text>
+          <Text className="font-bold text-gray-700">${cartItems.length > 0 ? Number(cartTotal) + Number(restaurant.deliveryFee) : 0}</Text>
         </View>
         <View>
           <TouchableOpacity
             className="flex-row items-center justify-center py-3 rounded-3xl"
-            style={{ backgroundColor: themeColors.bgColor(1) }}
+            style={{ backgroundColor: cartItems.length > 0 ?themeColors.bgColor(1) : themeColors.bgColor(0.5) }}
             onPress={() => navigation.navigate("OrderPreparing")}
+            disabled={cartItems.length === 0}
           >
             <Text
               className="font-bold text-white"

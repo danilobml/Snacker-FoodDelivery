@@ -18,7 +18,6 @@ import CartIcon from "../components/CartIcon";
 import { setRestaurant } from "../slices/restaurantSlice";
 import { useFetchData } from "../hooks/useFetchData";
 
-
 export default function RestaurantScreen() {
   const { params } = useRoute();
   let item = params;
@@ -44,11 +43,11 @@ export default function RestaurantScreen() {
             source={{uri: item.image}}
           />
           <TouchableOpacity
-            className="absolute rounded-full shadow top-14 left-4 bg-gray-50"
+            className="absolute rounded-full shadow top-14 left-4 bg-gray-50
             onPress={() => navigation.goBack()}
           >
             <Icon.ArrowLeft
-              strokeWidth={3}
+              strokeWidth={4}
               stroke={themeColors.bgColor(1)}
             />
           </TouchableOpacity>
@@ -61,12 +60,12 @@ export default function RestaurantScreen() {
             <Text className="text-3xl font-bold">{item.name}</Text>
             <View className="flex-row my-1 space-x-2 flex-nowrap">
               <View className="flex-row items-center space-x-1">
-                {Array.from(Array(item.stars).keys()).map((i) => {
+                {Array.from(Array(Number(item.rating)).keys()).map((i) => {
                   return (
                     <Image
                       source={require("../assets/images/fullStar.png")}
                       className="w-4 h-4"
-                      key={i}
+                      key={`star-${i}`}
                     />
                   );
                 })}

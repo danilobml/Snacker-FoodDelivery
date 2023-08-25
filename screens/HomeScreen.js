@@ -8,9 +8,13 @@ import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 
 import { useFetchData } from "../hooks/useFetchData";
+import { useLocation } from "../hooks/useLocation";
 
 export default function HomeScreen() {
   const { restaurants, featured } = useFetchData();
+  const { location } = useLocation();
+  const city = location ? location.city : "Search";
+  const lat = location ? location.lat : null;
 
   return (
     <SafeAreaView className="mt-1 bg-white">
@@ -32,7 +36,7 @@ export default function HomeScreen() {
               width={20}
               stroke={"gray"}
             />
-            <Text className="text-gray-500">Berlin</Text>
+            <Text className="text-gray-500">{city}</Text>
           </View>
         </View>
         <View
@@ -58,7 +62,7 @@ export default function HomeScreen() {
           {(restaurants.length > 0 && featured.length > 0) &&
             featured.map((item, index) => {
               const restaurantsInRow = restaurants.filter(restaurant =>
-                item.restaurants.includes(restaurant.categoryId));
+                item.restaurants.includes(restaurant.id));
               return (
                 <FeaturedRow
                   key={`featured-row-${index}`}

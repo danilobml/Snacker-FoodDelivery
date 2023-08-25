@@ -7,15 +7,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { themeColors } from "../themes";
 import { selectRestaurant } from "../slices/restaurantSlice";
 import { emptyCart } from "../slices/cartSlice";
+import { useLocation } from "../hooks/useLocation";
 
 export default function DeliveryScreen() {
   const navigation = useNavigation();
   const restaurant = useSelector(selectRestaurant);
   const dispatch = useDispatch();
+  const { location } = useLocation();
+  const myLat = location ? location.lat : null;
+  const myLng = location ? location.lng : null;
 
   return (
     <View className="flex-1">
-      <MapView
+      {myLat && myLng && <MapView
         initialRegion={{
           latitude: Number(restaurant.lat),
           longitude: Number(restaurant.lng),
@@ -34,7 +38,16 @@ export default function DeliveryScreen() {
           description={restaurant.address}
           pinColor={themeColors.bgColor(1)}
         />
-      </MapView>
+        <Marker
+          coordinate={{
+            latitude: myLat,
+            longitude: myLng,
+          }}
+          title="You"
+          description="Your location"
+          pinColor={themeColors.bgColor(1)}
+        />
+      </MapView>}
       <View className="relative -mt-12 bg-white rounded-t-3xl">
         <View className="flex-row justify-between px-5 pt-8">
           <View>
