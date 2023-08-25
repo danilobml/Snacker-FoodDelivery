@@ -43,7 +43,7 @@ export default function RestaurantScreen() {
             source={{uri: item.image}}
           />
           <TouchableOpacity
-            className="absolute rounded-full shadow top-14 left-4 bg-gray-50
+            className="absolute rounded-full shadow top-14 left-4 bg-gray-50"
             onPress={() => navigation.goBack()}
           >
             <Icon.ArrowLeft
