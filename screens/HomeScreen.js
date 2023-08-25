@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { View, Text, TextInput, ScrollView } from "react-native";
+import { View, Text, TextInput, ScrollView, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Icon from "react-native-feather";
 
@@ -20,6 +20,9 @@ export default function HomeScreen() {
     <SafeAreaView className="mt-1 bg-white">
       <StatusBar barStyle="dark-content" />
       <View className="flex-row items-center px-4 pb-2 space-x-2">
+        <View className="rounded-full shadow-md">
+          <Image source={require('../assets/images/logo.png')} style={{ width: 45, height: 45, borderRadius: '45%'}}/>
+        </View>      
         <View className="flex-row items-center flex-1 p-3 border border-gray-300 rounded-full">
           <Icon.Search
             height={25}

@@ -10,7 +10,7 @@ export default function RestaurantCard({ item, category }) {
       onPress={() => navigation.navigate("Restaurant", { ...item })}
     >
       <View
-        className="mr-6 bg-white shadow-lg rounded-3xl"
+        className="mr-6 bg-white shadow-md rounded-3xl"
         style={{
           shadowColor: themeColors.bgColor(2),
           shadowRadius: 7,
