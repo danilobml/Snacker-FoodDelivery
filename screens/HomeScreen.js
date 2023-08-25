@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { View, Text, TextInput, ScrollView, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -11,9 +12,10 @@ import { useFetchData } from "../hooks/useFetchData";
 import { useLocation } from "../hooks/useLocation";
 
 export default function HomeScreen() {
+  const [search, setSearch] = useState("");
   const { restaurants, featured } = useFetchData();
   const { location } = useLocation();
-  const city = location ? location.city : "Search";
+  const city = location ? location.city : "Unknown";
   const lat = location ? location.lat : null;
 
   return (
@@ -32,11 +34,12 @@ export default function HomeScreen() {
           <TextInput
             className="flex-1 ml-2 text-gray-500"
             placeholder="Find your Snack"
+            onChangeText={setSearch}
           />
           <View className="flex-row items-center pl-2 space-x-1 border-0 border-l-2 border-l-gray-300">
             <Icon.MapPin
-              height={20}
-              width={20}
+              height={18}
+              width={16}
               stroke={"gray"}
             />
             <Text className="text-gray-500">{city}</Text>
@@ -64,7 +67,7 @@ export default function HomeScreen() {
         <View className="mt-5">
           {(restaurants.length > 0 && featured.length > 0) &&
             featured.map((item, index) => {
-              const restaurantsInRow = restaurants.filter(restaurant =>
+              const restaurantsInRow = restaurants.filter(restaurant => search.length > 0 ? restaurant.name.toLowerCase().includes(search.toLowerCase()) :
                 item.restaurants.includes(restaurant.id));
               return (
                 <FeaturedRow
